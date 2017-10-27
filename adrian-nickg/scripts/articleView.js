@@ -9,7 +9,8 @@ let articleView = {};
 
 articleView.populateFilters = function() {
   $('article').each(function() {
-    if (!$(this).hasClass('template')) {
+    console.log(this);
+    if ($(this).hasClass('template')) {
       let val = $(this).find('address a').text();
       let optionTag = `<option value="${val}">${val}</option>`;
 
