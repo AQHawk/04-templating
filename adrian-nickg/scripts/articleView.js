@@ -7,7 +7,7 @@ let articleView = {};
 // COMMENT: How do arrow functions affect the context of "this"? How did you determine if a function could be refactored?
 // PUT YOUR RESPONSE HERE
 
-articleView.populateFilters = function() {
+articleView.populateFilters = (() => {
   $('article').each(function() {
     console.log(this);
     if ($(this).hasClass('template')) {
@@ -25,9 +25,9 @@ articleView.populateFilters = function() {
       }
     }
   });
-};
+});
 
-articleView.handleAuthorFilter = function() {
+articleView.handleAuthorFilter = (() => {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {
       $('article').hide();
@@ -38,9 +38,9 @@ articleView.handleAuthorFilter = function() {
     }
     $('#category-filter').val('');
   });
-};
+});
 
-articleView.handleCategoryFilter = function() {
+articleView.handleCategoryFilter = (() => {
   $('#category-filter').on('change', function() {
     if ($(this).val()) {
       $('article').hide();
@@ -51,18 +51,18 @@ articleView.handleCategoryFilter = function() {
     }
     $('#author-filter').val('');
   });
-};
+});
 
-articleView.handleMainNav = function() {
+articleView.handleMainNav = (() => {
   $('.main-nav').on('click', '.tab', function() {
     $('.tab-content').hide();
     $('#' + $(this).data('content')).fadeIn();
   });
 
   $('.main-nav .tab:first').click();
-};
+});
 
-articleView.setTeasers = function() {
+articleView.setTeasers = (() => {
   $('.article-body *:nth-of-type(n+2)').hide();
   $('article').on('click', 'a.read-on', function(e) {
     e.preventDefault();
@@ -77,9 +77,9 @@ articleView.setTeasers = function() {
       $(this).parent().find('.article-body *:nth-of-type(n+2)').hide();
     }
   });
-};
+});
 
-$(document).ready(function() {
+$(document).ready(() => {
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
